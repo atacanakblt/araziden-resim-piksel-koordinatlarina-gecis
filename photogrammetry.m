@@ -2,19 +2,19 @@
 M=imread(FileName);
 [FileName,PathName] = uigetfile('*.*','parametreler');
 P=xlsread(FileName)
-[FileName,PathName] = uigetfile('*.*','arazikoordinatlarý');
+[FileName,PathName] = uigetfile('*.*','arazikoordinatlari');
 AK=xlsread(FileName)
-[FileName,PathName] = uigetfile('*.*','dönüklükmatrisi');
+[FileName,PathName] = uigetfile('*.*','dÃ¶nÃ¼klÃ¼kmatrisi');
 DM=xlsread(FileName)
 satirpiksel=13824
 sutunpiksel=7680
 pikselboyu=12
 for i=1:length(AK)
-    %Resim Koordinatlarý
+    %Resim Koordinatlari
     xresim(i)= (-P(1,1))*(DM(1,1)*(AK(i,2)-P(1,4))+DM(1,2)*(AK(i,3)-P(1,5))+DM(1,3)*(AK(i,4)-P(1,6)))/ (DM(3,1)*(AK(i,2)-P(1,4))+DM(3,2)*(AK(i,3)-P(1,5))+DM(3,3)*(AK(i,4)-P(1,6)))+P(1,2);
     yresim(i)= (-P(1,1))*(DM(2,1)*(AK(i,2)-P(1,4))+DM(2,2)*(AK(i,3)-P(1,5))+DM(2,3)*(AK(i,4)-P(1,6)))/ (DM(3,1)*(AK(i,2)-P(1,4))+DM(3,2)*(AK(i,3)-P(1,5))+DM(3,3)*(AK(i,4)-P(1,6)))+P(1,3);
     resim=[xresim' yresim'];
-    % Piksel Koordinatlarý
+    % Piksel Koordinatlari
     xpiksel(i)= xresim(i)*(1000/pikselboyu)+sutunpiksel/2 ;
     ypiksel(i)= (-yresim(i))*(1000/pikselboyu)+satirpiksel/2 ;
     pxlkrd=[xpiksel' ypiksel'];
@@ -26,7 +26,7 @@ hold on
 scatter(pxlkrd(:,1),pxlkrd(:,2),'r*');
 xlabel ('X Ekseni','Fontsize',15,'Color','k');
 ylabel ('Y Ekseni','Fontsize',15,'Color','k');
-title ('Piksel Koordinatlarýnýn Resim Üzerinde Gösterimi','Color','r');
+title ('Piksel KoordinatlarÃ½nÃ½n Resim Ãœzerinde GÃ¶sterimi','Color','r');
 text(pxlkrd(1,1),pxlkrd(1,2),'10325629','Fontsize',10,'color','y')
 text(pxlkrd(2,1),pxlkrd(2,2),'10326254','Fontsize',10,'color','y')
 text(pxlkrd(3,1),pxlkrd(3,2),'10327982','Fontsize',10,'color','y')
